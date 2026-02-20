@@ -1,0 +1,21 @@
+{
+  "name": "click-commerce-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page da Click Commerce - otimizada para produção",
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/index.css -o ./dist/style.css --minify",
+    "build:copy": "node -e \"const fs=require('fs');const p=require('path');fs.mkdirSync('dist',{recursive:true});if(fs.existsSync('src/index.html'))fs.copyFileSync('src/index.html','dist/index.html'); if(fs.existsSync('_redirects')) fs.copyFileSync('_redirects','dist/_redirects');\"",
+    "build": "npm run build:css && npm run build:copy",
+    "clean-html": "python limpar_html.py",
+    "start": "node server.js",
+    "serve": "npx serve dist -l 8080"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.2.0",
+    "tailwindcss": "^4.2.0"
+  }
+}
